@@ -1,12 +1,12 @@
 import random
 import time
 
-attributes = {
+car = {
     "intelligence": 10,
     "energy":50,
     "weight":15,
     "zoomies":False,
-    "divinity":1
+    "divinity":9
 }
 
 messeges = {
@@ -47,6 +47,7 @@ messeges = {
     Feed Cat
     Feed Cat 
     Feed Cat
+
     """,
 
 
@@ -57,6 +58,11 @@ messeges = {
 }
 
 alive = True
+Trigger1 = False
+Trigger2 = False
+Trigger3 = False
+Trigger4 = False
+notfirst = False
 
 name = input("Please name your Cat: ").lower()
 name = name.capitalize()
@@ -65,9 +71,9 @@ colour = colour.capitalize()
 def status():
     print("Name: ",name)
     print("Colour: ",colour)
-    print("Intellegence: ",attributes["intelligence"])
-    print("Energy: ", attributes["energy"])
-    print("Weight: ", attributes["weight"])
+    print("Intellegence: ",car["intelligence"])
+    print("Energy: ", car["energy"])
+    print("Weight: ", car["weight"])
 status()
 
 time.sleep(3)
@@ -92,33 +98,56 @@ while alive == True:
         z = random.randint(1,5)
         d = random.randint(2,3)
         print("Intelligence +",x,"\nEnergy -",y, "\nWeight -",z)
-        attributes["intelligence"] + x
-        attributes["energy"] - y
-        attributes["weight"] - z
-        attributes["divinity"] + d
+        car["intelligence"] += x
+        car["energy"] -= y
+        car["weight"] -= z
+        car["divinity"] += d
     elif cmd == "feed cat" or cmd == "feed":
         print("You gave",name, "some food, they definatley enjoyed it.")
         x = random.randint(4,8)
         y = random.randint(2,3)
         print("Energy +", x,"\n Weight +",y )
-        attributes["energy"] + x
-        attributes["weight"] + y
+        car["energy"] += x
+        car["weight"] += y
     elif cmd == "train cat" or cmd == "train":
         print("You teach ", name, " some tricks, they appear to thoroughly enjoy it.")
         x = random.randint(3,5)
         y = random.randint(1,4)
         print("Intelligence +",x,"\n Energy -",y)
-        attributes["intelligence"] + x
-        attributes["energy"] -y
+        car["intelligence"] += x
+        car["energy"] -= y
     elif cmd == "put cat to sleep" or cmd == "sleep":
         print("You put ", name," to bed")
         x = random.randint(5,7)
         d = random.randint(2,4)
         print("Energy +",x)
-        attributes["energy"] + x
-        attributes["divinity"] + d
+        car["energy"] += x
+        car["divinity"] += d
     elif cmd == "stats" or "status":
         status()
-    if attributes["energy"] <= 0:
-        print(name, "Has died \n You Lose.")
+    if car["weight"] <= 0:
+        print(name, "Has died from malnourishment \n !!You Lose!!")
         alive = False
+        break
+    elif car["weight"] >= 30:
+        print(name, "Has died from obesity \n !!You Lose!!")
+        alive = False
+        break
+    elif car["energy"] <= 0:
+        print(name, "Has died of fatigue \n !!You Lose!!")
+        alive = False
+        break
+    if car["divinity"] >=10 and not Trigger1:
+        print(name+"'s","food bowl seemed a little more full today \nYou are sure you didn't fill it more than yesterday...")
+        Trigger1 = True
+    elif car["divinity"] >= 25 and not Trigger2:
+        print(name,"seems like they has been looking at you recently, the air around them feels heavier somehow...")
+        Trigger2 = True
+    elif car["divinity"] >= 50 and not Trigger3:
+        print("You are sure you caught",name+"'s","eyes glowing today, it must have been a trick of the light...")
+        Trigger3 = True
+    elif car["divinity"] >= 99 and not Trigger4:
+        print(name,"has ascended to godhood; the end of your people has come,the seas boil and the air burns from his magnificence. \nYou will be spared.\nBe grateful")
+        Trigger4 = True
+        print("\n!!!You Win!!!")
+    notfirst = True
