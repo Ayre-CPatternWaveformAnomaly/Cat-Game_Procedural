@@ -30,8 +30,8 @@ messeges = { #Couldn't think of a way to weight the messege selection system so 
     Feed cat
     Train Cat
     Put cat to sleep
-    Give Cat Catnip
-
+    !#/!#/DO NOT TRUST THE CAT\#!\#!
+    !#/!#/THE SYSTEM LIES\#!\#!
     """,
     2:"""
     List of Activies:
