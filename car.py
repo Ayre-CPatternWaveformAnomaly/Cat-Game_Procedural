@@ -257,21 +257,21 @@ while alive == True:
         car["weight"] -= z
         car["divinity"] += d
     elif cmd == "feed cat" or cmd == "feed":
-        print("You gave",name, "some food, they definatley enjoyed it.")
+        print("\nYou gave",name, "some food, they definatley enjoyed it.")
         x = random.randint(4,8)
         y = random.randint(2,3)
         print("Energy +", x,"\n Weight +",y )
         car["energy"] += x
         car["weight"] += y
     elif cmd == "train cat" or cmd == "train":
-        print("You teach ", name, " some tricks, they appear to thoroughly enjoy it.")
+        print("\nYou teach ", name, " some tricks, they appear to thoroughly enjoy it.")
         x = random.randint(3,5)
         y = random.randint(1,4)
         print("Intelligence +",x,"\n Energy -",y)
         car["intelligence"] += x
         car["energy"] -= y
     elif cmd == "put cat to sleep" or cmd == "sleep":
-        print("You put ", name," to bed")
+        print("\nYou put ", name," to bed")
         x = random.randint(5,7)
         d = random.randint(2,4)
         print("Energy +",x)
@@ -281,11 +281,11 @@ while alive == True:
         status()
 
     elif cmd == "pray to cat" or cmd == "pray":
-        print("You for the birth of a new deity.")
+        print("\nYou pray for the birth of a new deity.")
         d = random.randint(7,13)
         car["divinity"] += d
     elif cmd == "eat cat" and car["divinity"] <50 or cmd == "eat" and car["divinity"] <50:
-        print("You voraciously consume",name+".","Stragely, you feel like you have avoided a great danger.")
+        print("\nYou consume",name+".","Stragely, you feel like you have avoided a great danger.")
         print("You Win")
         alive = False
         break
@@ -299,7 +299,7 @@ while alive == True:
         time.sleep(1)
         toopower = pyfiglet.figlet_format("I am too powerful for you now",font = "basic")
         print(toopower)
-        print(name,"consumes voraciously consumes you")
+        print(name,"consumes you")
         alive = False
         print("You Lose")
         break
@@ -348,7 +348,7 @@ while alive == True:
 
 if win:
     my_art2 = AsciiArt.from_image('Demonic Ocean.jpg')
-    my_art2.to_terminal(columns=200)
+    my_art2.to_terminal(columns=175)
     print(name,"has ascended to godhood; the end of your people has come, the seas boil and the air blazes in the wake of his magnificence. \nYou will be spared.\nBe grateful")
     you_win = pyfiglet.figlet_format("!!!You Win!!!", font = "doom")
     print(you_win)
