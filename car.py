@@ -8,9 +8,9 @@ import pyfiglet
 
 car = {
     "intelligence": 10,
-    "energy":50,
+    "energy":25,
     "weight":15,
-    "divinity":98
+    "divinity":7
 }
 
 messeges = { #Couldn't think of a way to weight the messege selection system so I just added a bunch of normal choices to make the strange choices more unlikely but still reasonanbly possible.
@@ -121,17 +121,16 @@ messeges = { #Couldn't think of a way to weight the messege selection system so 
     Play with cat
     Feed cat
     Train Cat
-    Put cat to sleep
+    D  O  N  '  T    L  E  T    I  T    O  U  T    O  F    Y  O  U  R    S  I  G  H  T 
     
     """,
 
     11:"""
     List of Activies:
 
-    Play with cat
-    Feed cat
-    Train Cat
-    Put cat to sleep
+    
+    Pray To Cat.
+
     
     """,
 
@@ -162,7 +161,8 @@ messeges = { #Couldn't think of a way to weight the messege selection system so 
     Feed cat
     Train Cat
     Put cat to sleep
-    
+    Eat cat
+
     """,
 
     15:"""
@@ -277,8 +277,34 @@ while alive == True:
         print("Energy +",x)
         car["energy"] += x
         car["divinity"] += d
-    elif cmd == "stats" or "status":
+    elif cmd == "stats" or cmd == "status":
         status()
+
+    elif cmd == "pray to cat" or cmd == "pray":
+        print("You for the birth of a new deity.")
+        d = random.randint(7,13)
+        car["divinity"] += d
+    elif cmd == "eat cat" and car["divinity"] <50 or cmd == "eat" and car["divinity"] <50:
+        print("You voraciously consume",name+".","Stragely, you feel like you have avoided a great danger.")
+        print("You Win")
+        alive = False
+        break
+    elif cmd == "eat cat" and car["divinity"] >= 50 or cmd == "eat" and car["divinity"] >= 50:
+        for x in range(30):
+            print("You shouldn't have done that.")
+            time.sleep(0.1)
+        time.sleep(1)
+        toolate = pyfiglet.figlet_format("It is too late", font = "basic")
+        print(toolate)
+        time.sleep(1)
+        toopower = pyfiglet.figlet_format("I am too powerful for you now",font = "basic")
+        print(toopower)
+        print(name,"consumes voraciously consumes you")
+        alive = False
+        print("You Lose")
+        break
+
+
     if car["weight"] <= 0:
         print(name, "Has died from malnourishment \n !!You Lose!!")
         alive = False
@@ -291,13 +317,16 @@ while alive == True:
         print(name, "Has died of fatigue \n !!You Lose!!")
         alive = False
         break
+    
+
     elif cmd == "stop" or cmd == "exit":
         break
+
     if car["divinity"] >=10 and not Trigger1:
         print(name+"'s","food bowl seemed a little more full today \nYou are sure you didn't fill it more than yesterday...")
         Trigger1 = True
     elif car["divinity"] >= 25 and not Trigger2:
-        print(name,"seems like they have been watching you recently, the air around them feels heavier somehow...")
+        print("It sems like",name,"has been intently watching you recently, the air around them feels heavier somehow...")
         Trigger2 = True
     elif car["divinity"] >= 50 and not Trigger3:
         print("You are sure you caught",name+"'s","eyes glowing today, it must have been a trick of the light...")
